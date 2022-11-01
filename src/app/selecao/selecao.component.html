@@ -1,0 +1,25 @@
+<div class="">
+  <br />
+  <label for="cadastro">Busca por nome do convidado</label>
+  <input
+    type="text"
+    class="form-control"
+    id="cadastro"
+    #valorInput
+    [disabled]="this.habilitaSpinner"
+  />
+  <br />
+  <button
+    class="btn corHabilita"
+    (click)="this.capturaValor(valorInput.value)"
+    [disabled]="this.habilitaSpinner"
+  >
+    <span
+      *ngIf="this.habilitaSpinner"
+      class="spinner-grow spinner-grow-sm"
+      role="status"
+      aria-hidden="true"
+    ></span>
+    {{ !this.habilitaSpinner ? "Consultar" : "Carregando..." }}
+  </button>
+</div>

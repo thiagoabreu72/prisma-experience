@@ -1,0 +1,14 @@
+<h1>PRISMA EXPERIENCE</h1>
+
+<form action="">
+  <div class="card">
+    <app-selecao
+      (valorInput)="this.capturaValor($event)"
+      [habilitaSpinner]="this.habilitaSpinner"
+    ></app-selecao>
+    <app-lista
+      (valorBooleano)="this.capturaBooleano($event)"
+      [valorRecebido]="this.enviaValor"
+    ></app-lista>
+  </div>
+</form>
