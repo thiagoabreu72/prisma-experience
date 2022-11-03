@@ -1,0 +1,72 @@
+<button
+  class="btn corHabilita"
+  id="botaoSenha"
+  data-toggle="modal"
+  data-target="#modalSenha"
+>
+  Cadastrar Convidado
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalSenha"
+  tabindex="-1"
+  aria-labelledby="modalSenhaLabel"
+  aria-hidden="true"
+  [formGroup]="this.modal"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalSenhaLabel">
+          <strong id="cabecalho">Cadastro de Convidado</strong>
+        </h3>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6 class="modal-title" id="modalSenhaLabel">Nome da Empresa</h6>
+        <input
+          class="form-control"
+          type="text"
+          style="width: -webkit-fill-available"
+          formControlName="empresa"
+        />
+        <br />
+        <h6 class="modal-title" id="modalSenhaLabel">Nome do Convidado</h6>
+        <input
+          class="form-control"
+          type="text"
+          style="width: -webkit-fill-available"
+          formControlName="nome"
+        />
+        <br />
+        <h6 class="modal-title" id="modalSenhaLabel">Cargo do Convidado</h6>
+        <input
+          class="form-control"
+          type="text"
+          style="width: -webkit-fill-available"
+          formControlName="cargo"
+        />
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn corHabilita"
+          data-dismiss="modal"
+          (click)="obtemDados()"
+        >
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
