@@ -1,4 +1,8 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Resultados } from './../interfaces/resultado';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Convidado } from '../interfaces/convidado';
+import { ServicesG5 } from '../services/services-g5.service';
 
 @Component({
   selector: 'app-selecao',
@@ -6,19 +10,32 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./selecao.component.scss'],
 })
 export class SelecaoComponent {
-  @Output() valorInput = new EventEmitter<string>();
-  @Input() habilitaSpinner: boolean = false;
-  private valorAnterior = '';
+  @Output() carregarSpinner = new EventEmitter<any>();
+  habilitaSpinner: boolean = false;
+  convidado: Convidado;
+  resultado: Resultados;
+  modal: FormGroup;
 
-  capturaValor(valor: string) {
-    //console.log(valor);
+  constructor(private service: ServicesG5) {
+    this.modal = new FormGroup({
+      busca: new FormControl(null, Validators.required),
+      selecao: new FormControl(null),
+    });
+  }
 
-    this.valorInput.emit(valor);
-    /*if (valor >= 1 && valor !== this.valorAnterior) this.habilitaSpinner = true;
-    else if (valor === this.valorAnterior)
-      alert('Não houve alteração de número de cadastro.');
-    else alert('Campo Número de Cadastro sem registro.');*/
-    this.valorAnterior = valor;
+  capturaValor() {
+    this.carregarSpinner.emit(true);
+    let valor = { buscaNome: this.modal.value.busca, credencial: 'N' };
     console.log(valor);
+    this.service.consultaConvidados(valor).subscribe((retorno) => {
+      this.resultado = retorno.dados;
+      console.log(this.resultado);
+      this.carregarSpinner.emit(false);
+      this.limparCampos();
+    });
+  }
+
+  limparCampos() {
+    this.modal.patchValue({ busca: '', selecao: '' });
   }
 }

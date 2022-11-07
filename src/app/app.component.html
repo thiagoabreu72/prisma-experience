@@ -2,14 +2,10 @@
 
 <form action="">
   <div class="card">
-    <app-selecao
-      (valorInput)="this.capturaValor($event)"
-      [habilitaSpinner]="this.habilitaSpinner"
-    ></app-selecao>
-    <app-lista
-      (valorBooleano)="this.capturaBooleano($event)"
-      [valorRecebido]="this.enviaValor"
-    ></app-lista>
-    <app-cadastrar></app-cadastrar>
+    <app-selecao (carregarSpinner)="this.capturaBooleano($event)"></app-selecao>
+    <app-cadastrar
+      (carregarSpinner)="this.capturaBooleano($event)"
+    ></app-cadastrar>
+    <app-spinner [carregandoDados]="this.carregandoDados"></app-spinner>
   </div>
 </form>

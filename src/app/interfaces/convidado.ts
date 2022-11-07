@@ -1,6 +1,14 @@
 export interface Convidado {
   buscaNome?: string;
-  nome: string;
-  cargo: string;
-  empresa: string;
+  credencial?: string;
+  dados?: {
+    nome?: string;
+    cargo?: string;
+    empresa?: string;
+    numemp?: number;
+    tipcol?: number;
+    numcad?: number;
+  };
+  msgRet?: string;
+  erroExecucao?: any;
 }

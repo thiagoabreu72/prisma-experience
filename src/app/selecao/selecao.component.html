@@ -1,18 +1,17 @@
-<div>
+<div [formGroup]="this.modal">
   <br />
   <label for="cadastro">Busca por nome do convidado</label>
   <input
     type="text"
     class="form-control"
     id="cadastro"
-    #valorInput
-    [disabled]="this.habilitaSpinner"
+    formControlName="busca"
   />
   <br />
 
   <button
     class="btn corHabilita"
-    (click)="this.capturaValor(valorInput.value)"
+    (click)="this.capturaValor()"
     [disabled]="this.habilitaSpinner"
   >
     <span
@@ -23,4 +22,21 @@
     ></span>
     {{ !this.habilitaSpinner ? "Consultar" : "Carregando..." }}
   </button>
+  <br />
+
+  <br />
+  <label for="selecao">Selecione o convidado</label>
+  <input
+    id="selecao"
+    list="colaborador"
+    class="form-control"
+    formControlName="selecao"
+  />
+  <datalist id="colaborador">
+    <option
+      *ngIf="this.resultado"
+      [value]="this.resultado.nome"
+      selected
+    ></option>
+  </datalist>
 </div>

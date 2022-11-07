@@ -8,10 +8,11 @@ import { environment } from 'src/environments/environment';
 })
 export class ServicesG5 {
   private urlSenior = environment.urlSenior;
-  private portasSenior = ['ConsultaConvidado'];
+  private portasSenior = ['ConsultaCredencial', 'InserirCredencial'];
   private contexto: string = 'SXI-API';
-  private modulo: string = 'ronda';
+  private modulo: string = 'rubi';
   private urlConsulta: string;
+  private urlInsercao: string;
   private token = null;
   private tokenColaborador = null;
   private urlAuth: string =
@@ -29,7 +30,8 @@ export class ServicesG5 {
   constructor(private http: HttpClient) {
     //Inicializa o token da propriedade corrente.
     this.urlConsulta = this.converteUrl(this.urlSenior, this.portasSenior[0]);
-    console.log(this.urlConsulta);
+    this.urlInsercao = this.converteUrl(this.urlSenior, this.portasSenior[1]);
+    //console.log(this.urlConsulta);
     this.gerarToken({
       username: environment.username,
       password: environment.password,
@@ -70,5 +72,14 @@ export class ServicesG5 {
       Authorization: this.token,
     });
     return this.http.post<any>(this.urlConsulta, dados, { headers });
+  }
+
+  inserirConvidado(dados: object): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.token,
+    });
+    console.log(dados);
+    return this.http.post<any>(this.urlInsercao, dados, { headers });
   }
 }

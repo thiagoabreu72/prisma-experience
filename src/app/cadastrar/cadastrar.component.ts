@@ -1,5 +1,5 @@
 import { ServicesG5 } from './../services/services-g5.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./cadastrar.component.scss'],
 })
 export class CadastrarComponent {
+  @Output() carregarSpinner = new EventEmitter<any>();
   modal: FormGroup;
 
   constructor(private service: ServicesG5) {
@@ -19,12 +20,18 @@ export class CadastrarComponent {
   }
 
   obtemDados() {
+    this.carregarSpinner.emit(true);
     let dados = {
-      empresa: this.modal.value.empresa,
-      nome: this.modal.value.nome,
-      cargo: this.modal.value.cargo,
+      nomEmp: this.modal.value.empresa,
+      nomPar: this.modal.value.nome,
+      carPar: this.modal.value.cargo,
     };
 
-    console.log(dados);
+    this.service.inserirConvidado(dados).subscribe((retorno) => {
+      console.log(retorno);
+      this.carregarSpinner.emit(false);
+    });
+
+    //console.log(dados);
   }
 }

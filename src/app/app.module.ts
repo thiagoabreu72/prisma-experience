@@ -6,12 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SelecaoComponent } from './selecao/selecao.component';
-import { ListaComponent } from './lista/lista.component';
-import { CadastrarComponent } from './cadastrar/cadastrar.component';
 
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, SelecaoComponent, ListaComponent, CadastrarComponent],
+  declarations: [AppComponent, SelecaoComponent, CadastrarComponent, SpinnerComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

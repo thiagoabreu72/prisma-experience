@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class AppComponent {
   enviaValor: string;
   habilitaSpinner: boolean;
+  carregandoDados: boolean = false;
 
   // constructor(private service: ServicesG5) {}
 
@@ -18,6 +19,6 @@ export class AppComponent {
   }
 
   capturaBooleano(valor: boolean) {
-    this.habilitaSpinner = valor;
+    this.carregandoDados = valor;
   }
 }
