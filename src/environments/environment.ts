@@ -8,8 +8,8 @@ export const environment = {
     'https://srvhom01:8182/g5-senior-services/rubi_Synccom_prisma_experience?wsdl',
   urlPlatform:
     'https://platform.senior.com.br/t/senior.com.br/bridge/1.0/rest/platform',
-  username: 'consultaEPI@braspine.com.br',
-  password: 'G27u3e*P%2N!',
+  username: 'seuusuario@tenant',
+  password: 'suasenha',
 };
 
 /*
